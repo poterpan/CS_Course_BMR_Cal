@@ -34,9 +34,14 @@ int BMR_Cal(int Gender, float Height, float Weight, float Age, float& BMR) {
         BMR = 655 + (9.6 * Weight + 1.8 * Height - 4.7 * Age);
     }
 
-    cout << fixed << setprecision(1) << "您的BMR為：" << BMR << endl;
     return 0;
 
+}
+
+
+int BMR_Show(float BMR) {
+  cout << fixed << setprecision(1) << "您的BMR為：" << BMR << endl;
+  return 0;
 }
 
 
@@ -46,23 +51,30 @@ int TEDD_Cal(int Type, float BMR, float& T1, float& T2, float& T3, float& T4, fl
     T3 = BMR * 1.55;
     T4 = BMR * 1.72;
     T5 = BMR * 1.9;
-    if (Type == 1)
-        cout << T1 << endl;
-
-    else if (Type == 2)
-        cout << T2 << endl;
-
-    else if (Type == 3)
-        cout << T3 << endl;
-
-    else if (Type == 4)
-        cout << T4 << endl;
-
-    else if (Type == 5)
-        cout << T5 << endl;
-
     return 0;
 }
+
+
+int TDEE_Show(int Type, float T1, float T2, float T3, float T4, float T5) {
+  cout << "您的TDEE數值為: " ;
+  if (Type == 1)
+      cout << T1 << endl;
+
+  else if (Type == 2)
+      cout << T2 << endl;
+
+  else if (Type == 3)
+      cout << T3 << endl;
+
+  else if (Type == 4)
+      cout << T4 << endl;
+
+  else if (Type == 5)
+      cout << T5 << endl;
+
+  return 0;
+}
+
 
 int Show_Graph(float T1, float T2, float T3, float T4, float T5) {
     float g1 = T1 / 100, g2 = T2 / 100, g3 = T3 / 100, g4 = T4 / 100, g5 = T5 / 100;
@@ -199,6 +211,11 @@ int main() {
         cout << "以下為輸入數值整理" << endl;
         cout << Gender << endl << Age << endl << Height << endl << Weight << endl;
 
+
+        BMR_Cal(Gender, Height, Weight, Age, BMR);
+        TEDD_Cal(Type, BMR, T1, T2, T3, T4, T5);
+
+
         bool show_menu = true;
 
         while(show_menu){
@@ -212,20 +229,25 @@ int main() {
           cin >> menu_sel;
           switch (menu_sel) {
             case 1:
-            BMR_Cal(Gender, Height, Weight, Age, BMR);
+            cout << endl;
+            BMR_Show(BMR);
+            cout << endl <<"Back to MENU" << endl << endl;
             break;
             case 2:
-            TEDD_Cal(Type, BMR, T1, T2, T3, T4, T5);
+            cout << endl;
+            TDEE_Show(Type, T1, T2, T3, T4, T5);
+            cout << endl <<"Back to MENU" << endl << endl;
             break;
             case 3:
+            cout << endl;
             Show_Graph(T1, T2, T3, T4, T5);
+            cout << endl <<"Back to MENU" << endl << endl;
             break;
             case 4:
             cout << "Back to Setting Page" << endl;
             show_menu = false;
             break;
           }
-          cout << endl <<"Back to MENU" << endl << endl;
         }
 
 
