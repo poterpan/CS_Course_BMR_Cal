@@ -6,7 +6,6 @@
 //
 #include <iostream>
 #include <iomanip>
-#include <stdlib.h>
 #include<windows.h>
 
 #define color_red "\x1B[0;31m"
