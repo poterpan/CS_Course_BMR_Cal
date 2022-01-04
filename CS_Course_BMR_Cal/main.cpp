@@ -8,9 +8,14 @@
 #include <iomanip>
 #include<windows.h>
 
-#define color_red "\x1B[0;31m"
-#define color_green "\x1B[0;32m"
-#define color_blue "\x1B[0;34m"
+
+#define Color_Red     "\x1b[0;31m"    // 0: Normal, 4: add the underline
+#define Color_Green   "\x1b[0;32m"
+#define Color_Blue    "\x1b[0;34m"
+#define Color_Yellow  "\x1b[0;33m"
+#define Color_Magenta "\x1b[0;35m"
+#define Color_Cyan    "\x1b[0;36m"
+#define Color_Reset   "\x1b[0;0m"
 
 
 using namespace std;
@@ -157,22 +162,46 @@ int printTree() {
 }
 
 int printTree2() {
-    int tree_half_width = 5;
+    int tree_size = 5;
     int i, j, k;
-    for (i = 1; i <= tree_half_width; i++) {
-        for (j = 1; j <= tree_half_width - i; j++) {
-            cout << " ";
-        }
-        for (k = 1; k <= i * 2 - 1; k++) {
-            if (i % 2 == 0) {
-                cout << color_blue "*";
-            }
-            else {
-                cout << color_green "*";
-            }
-        }
-        cout << endl;
-    }
+    for (i = 1; i <= tree_size; i++)
+    	{
+    		for (j = 1; j <= tree_size - i; j++)   // print space
+    		{
+    			cout << " ";
+    		}
+
+    		for (k = 1; k <= i * 2 - 1; k++)            // print *
+    		{
+    			if (k % 5 == 0)
+    			{
+    				cout << Color_Red "*";   // Color_Red = "\x1b[31m", Try the Color_Red replace to "\x1b[31m"
+    			}
+
+    			if (k % 5 == 1)
+    			{
+    				cout << Color_Green "*";   // Color_Red = "\x1b[31m", Try the Color_Red replace to "\x1b[31m"
+    			}
+
+    			if (k % 5 == 2)
+    			{
+    				cout << Color_Cyan "o";   // Color_Red = "\x1b[31m", Try the Color_Red replace to "\x1b[31m"
+    			}
+
+    			if (k % 5 == 3)
+    			{
+    				cout << Color_Magenta "j";   // Color_Red = "\x1b[31m", Try the Color_Red replace to "\x1b[31m"
+    			}
+
+    			if (k % 5 == 4)
+    			{
+    				cout << Color_Yellow "A";   // Color_Red = "\x1b[31m", Try the Color_Red replace to "\x1b[31m"
+    			}
+
+    		}
+
+    		cout << endl;
+    	}
     return 0;
 }
 
